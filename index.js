@@ -64,17 +64,17 @@ client.once('ready', () =>  {
 
 // Responsible for checking any false commands 
 
-client.on("message", msg => {
-    if (!msg.author.bot) 
-    console.log(args);
-    var args = message.content.split(' ');
-    let indicator = args[1];
-    console.log(indicator);
-    for (let i = 0; i < commands.length; i++) { 
-        if (indicator == "-" && msg.content.includes(commands[i]) == false) {
-            msg.reply(`<@${msg.author.id}>, this is not a valid command, please use -help to see all valid 
-            commands.` )
-            console.log("Invalid command by" + " " + msg.author + " " + "at" + " " + new Date()); 
+client.on("message", (message) => {
+    if (message.author.bot == true) { 
+        return;
+    }
+    if (message.author.bot == false) {
+        var args = message.content.split('');
+        let indicator = args[0];
+        console.log(commands.indexOf(message));
+        if (indicator == "-" && commands.indexOf(message) == -1) {
+            message.reply(`<@${message.author.id}>, this is not a valid command, please use **-help** to see all valid commands.` )
+            console.log("Invalid command by" + " " + message.author + " " + "at" + " " + new Date()); 
         }
     }
 })
