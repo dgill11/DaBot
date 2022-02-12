@@ -5,6 +5,7 @@ const commands = ["-help", "-joke", "-commands"];
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS]});
 const channelId = '923809298784608268';
 var memberCountServer = {};
+const bannedlanguage = ["fuck", "stupid", "retarded", "retard", "ass", "nigger", "nigga",];
 
 const membercounter = async (client) => {
     const guild = await client.guilds.cache.get('879156561560358963');
@@ -12,6 +13,14 @@ const membercounter = async (client) => {
         const memberCount = guild.memberCount;
         memberCountServer.people = memberCount;
     }, 5000)
+}
+
+const swearchecker = async (msg) => {
+    if (bannedlanguage.indexOf(msg.content) != -1) {
+        let memberDelinquent = client.users.fetch(msg.author.id);
+        let mutedRole = client.guilds.cache.find(role => role.id === '939746614971621376');
+        console.log(memberDelinquent.roles);
+    }
 }
 
 const spamchecker = async (msg) => {
@@ -22,12 +31,11 @@ const spamchecker = async (msg) => {
     let lastMessage = specificMessages.at(-1); // Last Message being collected 
     let lastTimeCreated = lastMessage.createdTimestamp;
     let spam = (secondTimeCreated - lastTimeCreated);  // Difference in timestamp between two messages 
-    if (spam < 250) {
+    if (spam < 900) {
         console.log(spam);
         lastMessage.reply("Stop spamming.");
     }    // Reply to the ID of the last message, and then add mute role // 
  }
-
 
 // Sends welcome message to new guild members 
 
@@ -89,9 +97,8 @@ client.on("message", msg => {
     if  (msg.author.bot == false) {
         console.log("Human sent message");
         spamchecker(msg);
+        swearchecker(msg);
     }
 })
-
 // API Key
-
-client.login(process.env.KEY);
+client.login("OTIzNjYxNDYxNzQ0NjY4Njgy.YcTQxQ.yDobET9NNe3fhey1WRKV5LvjtQI");
