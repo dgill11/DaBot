@@ -5,7 +5,7 @@ const commands = ["-help", "-joke", "-commands"];
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS]});
 const channelId = '923809298784608268';
 var memberCountServer = {};
-const bannedlanguage = ["fuck", "stupid", "retarded", "retard", "ass", "nigger", "nigga",];
+const bannedlanguage = [];
 
 const membercounter = async (client) => {
     const guild = await client.guilds.cache.get('879156561560358963');
