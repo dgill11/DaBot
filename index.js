@@ -101,4 +101,4 @@ client.on("message", msg => {
     }
 })
 // API Key
-client.login("OTIzNjYxNDYxNzQ0NjY4Njgy.YcTQxQ.yDobET9NNe3fhey1WRKV5LvjtQI");
+client.login();
